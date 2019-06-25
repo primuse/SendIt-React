@@ -1,0 +1,32 @@
+pipeline {
+  agent {
+    kubernetes {
+      label 'sendit'
+      defaultContainer 'jnlp'
+      yamlFile 'jenkins/agent.yaml'
+    }
+  }
+
+  stages {
+      stage('Build') {
+          steps {
+              container('sendit') {
+                sh "npm install"
+              }
+          }
+        }
+
+      stage('Test'){
+        parallel {
+          stage("Branch 1") {
+              steps {
+                container('sendit') {
+                  sh "npm test"
+                }
+              }
+            }
+        }
+      }
+  }
+}
+            
