@@ -12,11 +12,10 @@ EXPOSE 8080
 # Install app dependencies
 COPY package.json /usr/src/app/
 
+RUN npm install
 
 # Bundle app source
 COPY . .
 
-RUN npm install
-
 # Run this command on startup
-ENTRYPOINT ["npm", "start"]
+ENTRYPOINT ["npm", "run", "start-dev"]

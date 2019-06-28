@@ -6,6 +6,9 @@ pipeline {
       yamlFile 'jenkins/agent.yaml'
     }
   }
+  environment {
+    GCLOUD_SERVICE_KEY  = credentials('GCLOUD_SERVICE_KEY')
+  }
 
   stages {
     stage('Build') {
@@ -19,18 +22,21 @@ pipeline {
     stage('Test'){
       steps {
         container('sendit') {
-          // sh "npm test -- -u"
+          sh "npm test -- -u"
         }
       }
     }
     stage('Bake'){
       steps {
         container('sendit') {
-          sh "docker ps"
-          // sh "chmod +x scripts/ && ./scripts/bake.sh"
+          withCredentials([
+            file(credentialsId: 'SENDIT_ENV', variable: 'ENV_FILE')
+          ]) {
+            load "$ENV_FILE"
+          }
+          sh "chmod +x jenkins/scripts/* && ./jenkins/scripts/bake.sh"
         }
       }
     }
   }
 }
-            

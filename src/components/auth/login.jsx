@@ -95,7 +95,7 @@ export const Reset = () => (
       <div className='sendit-text mb-24'>
         <h5>
           The <span className='head-span'>Courier</span> service app you've been
-          waiting for
+          waiting for!
         </h5>
       </div>
       <div id='form-box'>

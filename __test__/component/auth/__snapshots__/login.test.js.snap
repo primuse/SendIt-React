@@ -17,7 +17,7 @@ exports[`Login Page component renders correctly 1`] = `
           <span
             className="head-span"
           >
-            IT
+            IT!
           </span>
         </a>
       </li>
