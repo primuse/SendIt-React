@@ -8,25 +8,29 @@ pipeline {
   }
 
   stages {
-      stage('Build') {
-          steps {
-              container('sendit') {
-                sh "npm install"
-              }
-          }
-        }
-
-      stage('Test'){
-        parallel {
-          stage("Branch 1") {
-              steps {
-                container('sendit') {
-                  sh "npm test"
-                }
-              }
+    stage('Build') {
+        steps {
+            container('sendit') {
+              sh "npm install"
             }
         }
       }
+
+    stage('Test'){
+      steps {
+        container('sendit') {
+          // sh "npm test -- -u"
+        }
+      }
+    }
+    stage('Bake'){
+      steps {
+        container('sendit') {
+          sh "docker ps"
+          // sh "chmod +x scripts/ && ./scripts/bake.sh"
+        }
+      }
+    }
   }
 }
             
