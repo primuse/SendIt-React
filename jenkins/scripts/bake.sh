@@ -74,7 +74,7 @@ metadata:
   labels:
     app: sendit
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: sendit

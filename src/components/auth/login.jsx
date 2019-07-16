@@ -31,7 +31,7 @@ export const Login = () => (
       <div className='sendit-text mb-34'>
         <h5>
           The <span className='head-span'>Courier</span> service app you've
-          been waiting for
+          been waiting for!
         </h5>
         <p>SendIT makes reaching the world easier!</p>
       </div>
